@@ -32,7 +32,7 @@ write.csv(metadata, file.path(dir_data, 'metadata.csv'), row.names = FALSE)
 probe <- pData(featureData(eset))
 write.csv(probe, file.path(dir_data, 'probe.csv'), row.names = FALSE)
 #---- PCA ----------------------------------------------------------------------
-pca_result <- prcomp(t(scale(exp_matrix)), center = TRUE, scale. = TRUE)
+pca_result <- prcomp(scale(t(exp_matrix)), center = FALSE, scale. = FALSE)
 pca_data <- data.frame(PC1 = pca_result$x[,1], PC2 = pca_result$x[,2], 
                        Label = metadata$`gender:ch1`)
 ggplot(pca_data, aes(x = PC1, y = PC2, color = Label)) +
